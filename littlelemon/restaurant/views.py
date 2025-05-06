@@ -12,10 +12,12 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
 
 class MenuItemsView(generics.ListCreateAPIView):
+    permission_classes = [IsAuthenticated]
     queryset = Menu.objects.all()
     serializer_class = MenuSerializer
 
-class SingleMenuItemView(generics.RetrieveUpdateAPIView):
+class SingleMenuItemView(generics.RetrieveUpdateAPIView, generics.DestroyAPIView):
+    permission_classes = [IsAuthenticated]
     queryset = Menu.objects.all()
     serializer_class = MenuSerializer
 
